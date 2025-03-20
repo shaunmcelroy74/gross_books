@@ -3,12 +3,12 @@
 <h1 class="title is-2"><%= @publisher.publisher_name %></h1>
 <p class="mb-5">
   <em>
-    Printed <%= @publisher.books.count %> books on the list
+    Printed <%= @publisher.books.count %> books on the list from highest to lowest gross sales
   </em>
 </p>
 
 <ol>
-<% @publisher.books.each do |book| %>
-<li><%= link_to book.book_name, book %></li>
-<% end %>
+  <% @books.each do |book| %>
+    <li><%= link_to book.book_name, book %></li>
+  <% end %>
 </ol>
