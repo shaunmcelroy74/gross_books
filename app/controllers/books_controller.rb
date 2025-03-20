@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.includes(:publisher).order("sale_rank")
+    @books = Book.includes(:publisher).order(Arel.sql("CAST(gross_sales AS REAL) DESC"))
   end
 
   def show
