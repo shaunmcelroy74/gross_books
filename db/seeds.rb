@@ -1,5 +1,7 @@
 require "csv"
 
+BookAuthor.destroy_all
+Author.destroy_all
 Book.destroy_all
 Publisher.destroy_all
 
@@ -11,7 +13,6 @@ csv_data = File.read(filename)
 books = CSV.parse(csv_data, headers: true, encoding: 'utf-8')
 
 books.each do |row|
-  # Find or create the publisher
   publisher = Publisher.find_or_create_by(publisher_name: row["Publisher"])
 
   if publisher.valid?
@@ -28,15 +29,22 @@ books.each do |row|
       units_sold: row["Units_Sold"]
     )
 
-    unless new_book.valid?
+    unless new_book&.valid?
       puts "Not able to create the book #{row["Book_Name"]}"
+      next
+    end
+
+    if row["Author"] && !row["Author"].strip.empty?
+      author_names = row["Author"].split(",").map(&:strip)
+      author_names.each do |author_name|
+        puts author_name
+        author = Author.find_or_create_by(author_name: author_name)
+        BookAuthor.create(book: new_book, author: author)
+      end
     else
-      # Update the publisher's revenue.
-      # First, convert the book's gross_sales to a float.
+      # If there is no author provided, update the publisher's revenue.
       book_sales = row["Gross_Sales"].to_f
-      # Get the current revenue, treating nil as zero.
       current_revenue = publisher.publisher_revenue.to_f
-      # Update the publisher's revenue by adding the new book's sales.
       publisher.update(publisher_revenue: current_revenue + book_sales)
     end
   else
@@ -46,3 +54,4 @@ end
 
 puts "Created #{Publisher.count} Publishers"
 puts "Created #{Book.count} Books"
+puts "Created #{Author.count} Authors"
