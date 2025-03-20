@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-  get "publishers/index"
-  get "publishers/show"
+  resources :publishers, only: [ :index, :show ]
   resources :books, only: [ :index, :show ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
