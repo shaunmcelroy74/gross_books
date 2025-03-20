@@ -1,4 +1,4 @@
-<% sorted_books = @books.sort_by { |book| book.gross_sales.to_f }.reverse %>
+<% sorted_books = @books.sort_by { |book| book.gross_sales.to_f }.reverse.first(10) %>
 
 <div class="columns">
   <div class="column">
