@@ -1,6 +1,6 @@
 <h1>Top Grossing Books</h1>
 <ol>
 <% @books.each do |book| %>
-    <li><%= link_to book.book_name, book %>
+    <li><%= link_to book.book_name, book %> published by <%= link_to book.publisher.publisher_name, book.publisher %></li>
 <% end %>
 </ol>
