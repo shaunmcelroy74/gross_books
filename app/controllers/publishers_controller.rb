@@ -1,6 +1,6 @@
 class PublishersController < ApplicationController
   def index
-    @publisher = Publisher.all
+    @publishers = Publisher.all
   end
 
   def show
