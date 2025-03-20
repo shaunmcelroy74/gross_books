@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  book_name: MyString
+  publishing_year: 1
+  language_code: MyString
+  book_average_rating: 9.99
+  book_ratings_count: 1
+  genre: MyString
+  gross_sales: MyString
+  sale_price: MyString
+  sale_rank: 1
+  units_sold: 1
+  publisher: one
+
+two:
+  book_name: MyString
+  publishing_year: 1
+  language_code: MyString
+  book_average_rating: 9.99
+  book_ratings_count: 1
+  genre: MyString
+  gross_sales: MyString
+  sale_price: MyString
+  sale_rank: 1
+  units_sold: 1
+  publisher: two
