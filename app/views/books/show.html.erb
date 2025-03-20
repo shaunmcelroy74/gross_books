@@ -1,35 +1,5 @@
 <% content_for(:title) {@book.book_name} %>
 
-<h1 class="title is-2">
-  <%= @book.book_name %>
-  <small class="has-text-white">
-    (Published in <%= @book.publishing_year %> | <%= @book.genre %> | <%= @book.language_code %>)
-  </small>
-</h1>
+<%= render @book %>
 
-<p>
-  <span><strong>Rating:</strong> <%= @book.book_average_rating %></span>
-  &nbsp;&nbsp;&nbsp;&nbsp;
-  <span><strong>Number of Ratings:</strong> <%= @book.book_ratings_count %></span>
-</p>
 
-<progress class="progress is-primary mt-5" value="<%= @book.book_average_rating %>" max="5">
-  <%= @book.book_average_rating %> out of 5
-</progress>
-
-<% adjusted_value = 1274 - @book.sale_rank %>
-
-<p class="mt-5"><strong>Sale Rank: </strong><%= @book.sale_rank %></p>
-
-<progress class="progress is-success mt-5" value="<%= adjusted_value %>" max="1274">
-  <%= @book.sale_rank %> out of 996
-</progress>
-
-<p class="mt-5"><strong>Sale Price:</strong> <%= number_to_currency(@book.sale_price) %></p>
-
-<p class="mt-5"><strong>Units Sold:</strong> <%= @book.units_sold %></p>
-
-<p class="mt-5"><strong>Gross Sales:</strong> <%= number_to_currency(@book.gross_sales) %></p>
-
-<p class="mt-5 mb-5"><strong>Publisher:</strong> <%= link_to @book.publisher.publisher_name, @book.publisher %></p>
-<hr>
