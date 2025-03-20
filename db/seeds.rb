@@ -6,7 +6,6 @@ Book.destroy_all
 Publisher.destroy_all
 
 filename = Rails.root.join("db/bookPublishingData.csv")
-
 puts "Reading in the file from here #{filename}"
 
 csv_data = File.read(filename)
@@ -41,12 +40,12 @@ books.each do |row|
         author = Author.find_or_create_by(author_name: author_name)
         BookAuthor.create(book: new_book, author: author)
       end
-    else
-      # If there is no author provided, update the publisher's revenue.
-      book_sales = row["Gross_Sales"].to_f
-      current_revenue = publisher.publisher_revenue.to_f
-      publisher.update(publisher_revenue: current_revenue + book_sales)
     end
+
+    # Update the publisher's revenue (do this regardless of the author field)
+    book_sales = row["Gross_Sales"].to_f
+    current_revenue = publisher.publisher_revenue.to_f
+    publisher.update(publisher_revenue: current_revenue + book_sales)
   else
     puts "Not able to create the Publisher with name #{row["Publisher"]}"
   end
@@ -55,3 +54,4 @@ end
 puts "Created #{Publisher.count} Publishers"
 puts "Created #{Book.count} Books"
 puts "Created #{Author.count} Authors"
+puts "Created #{BookAuthor.count} Book Authors"
