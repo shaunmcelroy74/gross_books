@@ -1,5 +1,3 @@
 <% content_for(:title) {@book.book_name} %>
 
-<%= render @book %>
-
-
+<%= render partial: "book", locals: { book: @book, show_link: true } %>
