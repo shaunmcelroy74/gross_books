@@ -1,2 +1,35 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<% sorted_books = @books.sort_by { |book| book.gross_sales.to_f }.reverse %>
+
+<div class="columns">
+  <div class="column">
+    <h3 class="title is-2">Top 10 Grossing Books</h3>
+    <ol class= "ml-5">
+      <% sorted_books.each do |book| %>
+        <li>
+          <%= link_to book.book_name, book %>
+          <em>
+            Gross Sales: <%= number_to_currency(book.gross_sales) %>
+          </em>
+        </li>
+      <% end %>
+    </ol>
+  <p class= "mt-5 ml-5"><%= link_to "💲💲💲Go to the entire list 💸💸💸", books_path %></p>
+</div>
+
+<div class="column">
+  <h3 class="title is-2">Top Grossing Publishers</h3>
+<ol class= "ml-5">
+  <% sorted_publishers = @publishers.sort_by do |publisher|
+     publisher.books.sum { |book| book.gross_sales.to_f }
+   end.reverse %>
+  <% sorted_publishers.each do |publisher| %>
+    <li>
+      <%= link_to publisher.publisher_name, publisher %>
+      <em>
+        Gross Revenue: <%= number_to_currency(publisher.books.sum { |book| book.gross_sales.to_f }) %>
+      </em>
+    </li>
+  <% end %>
+</ol>
+  <p class= "mt-5 ml-5"><%= link_to "💲💲💲Go to the publishers list 💸💸💸", publishers_path %></p>
+</div>
