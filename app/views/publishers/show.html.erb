@@ -4,3 +4,9 @@
     Printed <%= @publisher.books.count %> books on the list
   </em>
 </p>
+
+<ol>
+<% @publisher.books.each do |book| %>
+<li><%= link_to book.book_name, book %></li>
+<% end %>
+</ol>
