@@ -1,5 +1,5 @@
-<h1>Top Grossing Books</h1>
-<ol>
+<h1 class="title is-2">Top Grossing Books</h1>
+<ol class="ml-5">
 <% @books.each do |book| %>
     <li><%= link_to book.book_name, book %> published by <%= link_to book.publisher.publisher_name, book.publisher %></li>
 <% end %>
