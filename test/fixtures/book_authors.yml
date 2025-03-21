@@ -2,8 +2,9 @@
 
 one:
   book: one
-  publisher: one
+  author: one
 
 two:
   book: two
-  publisher: two
+  author: two
+
