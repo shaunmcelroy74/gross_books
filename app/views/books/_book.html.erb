@@ -19,6 +19,8 @@
 
 <p class="mt-5"><strong>Gross Sales:</strong> <%= number_to_currency(book.gross_sales) %></p>
 
+<p class="mt-5 mb-5"><strong>Authored By: </strong> <%= book.authored_by_names %></p>
+
 <p class="mt-5 mb-5"><strong>Publisher:</strong> <%= link_to book.publisher.publisher_name, book.publisher %></p>
 
 <p>

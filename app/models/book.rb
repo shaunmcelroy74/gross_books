@@ -8,4 +8,8 @@ class Book < ApplicationRecord
   validates :book_name, uniqueness: true
   validates :publishing_year, :book_ratings_count, :sale_rank, :units_sold, numericality: { only_integer: true }
   validates :book_average_rating, numericality: true
+
+  def authored_by_names
+    authors.map(&:author_name).join(", ")
+  end
 end
