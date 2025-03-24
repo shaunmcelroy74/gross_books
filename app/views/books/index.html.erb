@@ -5,3 +5,5 @@
 <% end %>
 
 <%= render partial: "book", collection: @books, locals: { show_link: true } %>
+
+<%= paginate @books %>
