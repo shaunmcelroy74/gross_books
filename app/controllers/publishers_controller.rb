@@ -1,6 +1,10 @@
 class PublishersController < ApplicationController
   def index
-    @publishers = Publisher.order_by_book_count
+    if params[:q].present?
+      @publishers = Publisher.where("LOWER(publisher_name) LIKE ?", "%#{params[:q].downcase}%")
+    else
+      @publishers = Publisher.order_by_book_count
+    end
   end
 
   def show
