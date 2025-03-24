@@ -14,6 +14,6 @@ class PublishersController < ApplicationController
     else
       @books = @publisher.books
     end
-    @books = @books.order(Arel.sql("CAST(gross_sales AS REAL) DESC"))
+    @books = @books.includes(:author).order(Arel.sql("CAST(gross_sales AS REAL) DESC"))
   end
 end
