@@ -1,10 +1,1 @@
-<h1 class="title is-2">Publishers</h1>
-
-<% sorted_publishers = @publishers.sort_by { |publisher| -publisher.books_count } %>
-<ol class="ml-5">
-  <% sorted_publishers.each do |publisher| %>
-    <li>
-      <%= link_to publisher.publisher_name, publisher %> printed <%= publisher.books_count %> books in the list
-    </li>
-  <% end %>
-</ol>
+<%= render partial: "publisher" %>
