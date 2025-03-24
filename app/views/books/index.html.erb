@@ -1,1 +1,9 @@
+<h1 class="title is-2">Books</h1>
+
+<%= form_with url: books_path, method: :get, local: true do |form| %>
+  <%= form.label :q, "Search Books:" %>
+  <%= form.text_field :q, placeholder: "Enter a title or keyword..." %>
+  <%= form.submit "Search" %>
+<% end %>
+
 <%= render partial: "book", collection: @books, locals: { show_link: true } %>
