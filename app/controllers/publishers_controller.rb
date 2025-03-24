@@ -9,6 +9,11 @@ class PublishersController < ApplicationController
 
   def show
     @publisher = Publisher.find(params[:id])
-    @books = @publisher.books.order(Arel.sql("CAST(gross_sales AS REAL) DESC"))
+    if params[:q].present?
+      @books = @publisher.books.where("LOWER(book_name) LIKE ?", "%#{params[:q].downcase}%")
+    else
+      @books = @publisher.books
+    end
+    @books = @books.order(Arel.sql("CAST(gross_sales AS REAL) DESC"))
   end
 end

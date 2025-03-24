@@ -1,4 +1,8 @@
-<% sorted_books = @publisher.books.sort_by { |book| book.gross_sales.to_f }.reverse %>
+<%= form_with url: publisher_path(@publisher), method: :get, local: true do |form| %>
+  <%= form.label :q, "Search Books:" %>
+  <%= form.text_field :q, placeholder: "Enter book title or keyword..." %>
+  <%= form.submit "Search" %>
+<% end %>
 
 <h1 class="title is-2"><%= @publisher.publisher_name %></h1>
 <p class="mb-5">
@@ -9,7 +13,7 @@
 
 <div class="content">
   <ol>
-    <% sorted_books.each do |book| %>
+    <% @books.each do |book| %>
       <li>
         <%= link_to book.book_name, book %>
         (<%= number_to_currency(book.gross_sales) %>)
