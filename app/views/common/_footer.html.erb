@@ -3,5 +3,8 @@
     <li><%= link_to "Home", root_path %></li>
     <li><%= link_to "Books", books_path  %></li>
     <li><%= link_to "Publishers", publishers_path %></li>
+    <% cms_pages.each do |page| %>
+    <li><%= link_to page.title, pages_permalink_path(page.permalink) %></li>
+    <% end %>
   </ul>
 </footer>
