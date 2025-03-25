@@ -1,20 +1,16 @@
 Rails.application.routes.draw do
-  resources :pages
+  # Define resourceful routes for pages, but skip the default :show action.
+  resources :pages, except: [ :show ]
+
+  # Create a custom route that maps URLs like /pages/contact
+  # to the pages#permalink action. This creates the helper
+  # pages_permalink_path.
   get "/pages/:permalink", to: "pages#permalink", as: "pages_permalink"
+
+  # Other routes
   root to: "home#index"
   resources :publishers, only: [ :index, :show ]
   resources :books, only: [ :index, :show ]
-  resources :pages
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

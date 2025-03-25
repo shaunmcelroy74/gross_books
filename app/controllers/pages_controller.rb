@@ -1,13 +1,22 @@
 class PagesController < ApplicationController
   before_action :set_page, only: %i[ show edit update destroy ]
 
-  # GET /pages or /pages.json
+  # GET /pages
   def index
     @pages = Page.all
   end
 
-  # GET /pages/1 or /pages/1.json
+  # GET /pages/:id
   def show
+  end
+
+  # GET /pages/:permalink
+  def permalink
+    @page = Page.find_by(permalink: params[:permalink])
+    if @page.nil?
+      # If no matching page is found, render a 404 page.
+      render file: "#{Rails.root}/public/404.html", status: :not_found
+    end
   end
 
   # GET /pages/new
@@ -15,14 +24,13 @@ class PagesController < ApplicationController
     @page = Page.new
   end
 
-  # GET /pages/1/edit
+  # GET /pages/:id/edit
   def edit
   end
 
-  # POST /pages or /pages.json
+  # POST /pages
   def create
     @page = Page.new(page_params)
-
     respond_to do |format|
       if @page.save
         format.html { redirect_to @page, notice: "Page was successfully created." }
@@ -34,7 +42,7 @@ class PagesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pages/1 or /pages/1.json
+  # PATCH/PUT /pages/:id
   def update
     respond_to do |format|
       if @page.update(page_params)
@@ -47,10 +55,9 @@ class PagesController < ApplicationController
     end
   end
 
-  # DELETE /pages/1 or /pages/1.json
+  # DELETE /pages/:id
   def destroy
     @page.destroy!
-
     respond_to do |format|
       format.html { redirect_to pages_path, status: :see_other, notice: "Page was successfully destroyed." }
       format.json { head :no_content }
@@ -59,12 +66,10 @@ class PagesController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_page
       @page = Page.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def page_params
       params.require(:page).permit(:title, :content, :permalink)
     end
