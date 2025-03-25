@@ -4,6 +4,19 @@ BookAuthor.destroy_all
 Author.destroy_all
 Book.destroy_all
 Publisher.destroy_all
+Page.destroy_all
+
+Page.create(
+title: "About the Data",
+content: "This data was pulled on a repository on GitHub",
+permalink: "about"
+)
+
+Page.create(
+  title: "Contact Us",
+  content: "Please email smcelroy2@rrc.ca",
+  permalink: "contact"
+)
 
 filename = Rails.root.join("db/bookPublishingData.csv")
 puts "Reading in the file from here #{filename}"
@@ -55,3 +68,4 @@ puts "Created #{Publisher.count} Publishers"
 puts "Created #{Book.count} Books"
 puts "Created #{Author.count} Authors"
 puts "Created #{BookAuthor.count} Book Authors"
+puts "Created #{Page.count} Pages"
