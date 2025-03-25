@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   # Define resourceful routes for pages, but skip the default :show action.
-  resources :pages
+  resources :pages, except: [ :show ]
 
   # Create a custom route that maps URLs like /pages/contact
   # to the pages#permalink action. This creates the helper
