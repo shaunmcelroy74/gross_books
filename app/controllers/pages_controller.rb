@@ -15,7 +15,6 @@ class PagesController < ApplicationController
   def permalink
     @page = Page.find_by(permalink: params[:permalink])
     if @page.nil?
-      # If no matching page is found, render a 404 page.
       render file: "#{Rails.root}/public/404.html", status: :not_found
     end
   end
@@ -34,7 +33,7 @@ class PagesController < ApplicationController
     @page = Page.new(page_params)
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: "Page was successfully created." }
+        format.html { redirect_to pages_permalink_path(@page.permalink), notice: "Page was successfully created." }
         format.json { render :show, status: :created, location: @page }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +46,7 @@ class PagesController < ApplicationController
   def update
     respond_to do |format|
       if @page.update(page_params)
-        format.html { redirect_to @page, notice: "Page was successfully updated." }
+        format.html { redirect_to pages_permalink_path(@page.permalink), notice: "Page was successfully updated." }
         format.json { render :show, status: :ok, location: @page }
       else
         format.html { render :edit, status: :unprocessable_entity }
