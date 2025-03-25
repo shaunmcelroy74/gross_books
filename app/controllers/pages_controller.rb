@@ -66,15 +66,11 @@ class PagesController < ApplicationController
 
   private
 
-  def set_page
-    @page = Page.find_by!(permalink: params[:id])
-  end
-
-  def page_params
-    if action_name == "create"
-      params.require(:page).permit(:title, :content, :permalink)
-    else
-      params.require(:page).permit(:title, :content)
+    def set_page
+      @page = Page.find(params[:id])
     end
-  end
+
+    def page_params
+      params.require(:page).permit(:title, :content, :permalink)
+    end
 end
