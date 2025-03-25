@@ -8,6 +8,7 @@ class PagesController < ApplicationController
 
   # GET /pages/:id
   def show
+    @page = Page.find(params[:id].to_s.split("-").first)
   end
 
   # GET /pages/:permalink
