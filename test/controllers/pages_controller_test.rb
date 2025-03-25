@@ -28,7 +28,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show page" do
-    get page_url(@page)
+    get page_url(@page.to_param)
     assert_response :success
   end
 
