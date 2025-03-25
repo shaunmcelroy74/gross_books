@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :pages
+  get "/pages/:permalink", to: "pages#permalink", as: "pages_permalink"
   root to: "home#index"
   resources :publishers, only: [ :index, :show ]
   resources :books, only: [ :index, :show ]
