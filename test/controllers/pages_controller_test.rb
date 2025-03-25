@@ -27,9 +27,10 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       } }, headers: @auth_headers
     end
 
-    # Use the custom route helper
+    # Expect the redirect to the custom show route
     assert_redirected_to pages_permalink_url(Page.last)
   end
+
 
   test "should show page" do
     get pages_permalink_url(@page), headers: @auth_headers
@@ -48,10 +49,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       permalink: "updated-unique-permalink-456"
     } }, headers: @auth_headers
     @page.reload
-    # Use the custom route helper
+    # Expect the redirect to the custom show route
     assert_redirected_to pages_permalink_url(@page)
   end
-
 
   test "should destroy page" do
     assert_difference("Page.count", -1) do
