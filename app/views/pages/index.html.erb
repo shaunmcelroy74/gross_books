@@ -8,10 +8,11 @@
   <% @pages.each do |page| %>
     <%= render page %>
     <p>
-      <%= link_to "Show this page", page %>
+      <%= link_to "Show this page", pages_permalink_path(page.permalink) %>
     </p>
+    <br>
   <% end %>
 </div>
+<br>
 
-<%= link_to "New page", new_page_path %> |
-<%= link_to "Contact", pages_permalink_path("contact") %>
+<%= link_to "New page", new_page_path %>
