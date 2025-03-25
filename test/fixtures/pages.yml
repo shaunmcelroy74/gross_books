@@ -1,11 +1,11 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
-  content: MyText
-  permalink: MyString
+  title: "About the Data"
+  content: "This data was pulled from GitHub."
+  permalink: "about-data"
 
 two:
-  title: MyString
-  content: MyText
-  permalink: MyString
+  title: "Contact Us"
+  content: "Email us at example@example.com."
+  permalink: "contact-us"
