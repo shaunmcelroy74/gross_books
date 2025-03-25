@@ -17,7 +17,11 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create page" do
     assert_difference("Page.count") do
-      post pages_url, params: { page: { content: @page.content, permalink: @page.permalink, title: @page.title } }
+      post pages_url, params: { page: {
+        title: "New Unique Title",
+        content: "New unique content",
+        permalink: "unique-permalink-123"
+      } }
     end
 
     assert_redirected_to page_url(Page.last)
@@ -34,7 +38,11 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update page" do
-    patch page_url(@page), params: { page: { content: @page.content, permalink: @page.permalink, title: @page.title } }
+    patch page_url(@page), params: { page: {
+      title: "Updated Unique Title",
+      content: "Updated unique content",
+      permalink: "updated-unique-permalink-456"
+    } }
     assert_redirected_to page_url(@page)
   end
 
