@@ -14,9 +14,9 @@ class PagesTest < ApplicationSystemTestCase
     visit pages_url
     click_on "New page"
 
-    fill_in "Content", with: @page.content
-    fill_in "Permalink", with: @page.permalink
-    fill_in "Title", with: @page.title
+    fill_in "Content", with: "System test content"
+    fill_in "Permalink", with: "unique-permalink-#{SecureRandom.hex(4)}"
+    fill_in "Title", with: "New System Test Title"
     click_on "Create Page"
 
     assert_text "Page was successfully created"
@@ -27,9 +27,9 @@ class PagesTest < ApplicationSystemTestCase
     visit page_url(@page)
     click_on "Edit this page", match: :first
 
-    fill_in "Content", with: @page.content
-    fill_in "Permalink", with: @page.permalink
-    fill_in "Title", with: @page.title
+    fill_in "Content", with: "Updated system test content"
+    fill_in "Permalink", with: "updated-unique-permalink-#{SecureRandom.hex(4)}"
+    fill_in "Title", with: "Updated System Test Title"
     click_on "Update Page"
 
     assert_text "Page was successfully updated"
