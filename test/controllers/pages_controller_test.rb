@@ -24,7 +24,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
-    assert_redirected_to page_url(assigns(:page))
+    page = assigns(:page)
+    page.reload
+    assert_redirected_to page_url(page)
   end
 
   test "should show page" do
@@ -43,7 +45,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       content: "Updated unique content",
       permalink: "updated-unique-permalink-456"
     } }
-    assert_redirected_to page_url(assigns(:page))
+    page = assigns(:page)
+    page.reload
+    assert_redirected_to page_url(page)
   end
 
   test "should destroy page" do
