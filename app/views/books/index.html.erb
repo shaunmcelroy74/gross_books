@@ -1,8 +1,9 @@
-<%= form_with url: books_path, method: :get, local: true do |form| %>
+<div class="mb-4"><%= form_with url: books_path, method: :get, local: true do |form| %>
   <%= form.label :q, "Search Books:" %>
   <%= form.text_field :q, placeholder: "Enter a title or keyword..." %>
   <%= form.submit "Search" %>
 <% end %>
+</div>
 
 <%= render partial: "book", collection: @books, locals: { show_link: true } %>
 

@@ -1,7 +1,8 @@
-<%= form_with url: publishers_path, method: :get, local: true do |form| %>
+<div class="mb-4"><%= form_with url: publishers_path, method: :get, local: true do |form| %>
   <%= form.label :q, "Search Publishers:" %>
   <%= form.text_field :q, placeholder: "Enter a title or keyword..." %>
   <%= form.submit "Search" %>
 <% end %>
+</div>
 
 <%= render partial: "publisher" %>
