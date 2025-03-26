@@ -1,6 +1,5 @@
 class PagesController < ApplicationController
   before_action :set_page, only: %i[ show edit update destroy ]
-  http_basic_authenticate_with name: "admin", password: "secret", except: [ :permalink, :show ]
 
   # GET /pages
   def index
