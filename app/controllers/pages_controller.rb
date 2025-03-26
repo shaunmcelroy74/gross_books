@@ -70,6 +70,10 @@ class PagesController < ApplicationController
     end
 
     def page_params
-      params.require(:page).permit(:title, :content, :permalink)
+      if action_name == "create"
+        params.require(:page).permit(:title, :content, :permalink)
+      else
+        params.require(:page).permit(:title, :content)
+      end
     end
 end

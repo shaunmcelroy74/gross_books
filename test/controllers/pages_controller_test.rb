@@ -41,8 +41,10 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     patch page_url(@page), params: { page: {
       title: "Updated Unique Title",
       content: "Updated unique content",
-      permalink: "updated-unique-permalink-456"
+      permalink: "updated-unique-permalink-456"  # This will be ignored
     } }
+    @page.reload
+    assert_equal "about", @page.permalink  # Expect it to remain unchanged
     assert_redirected_to pages_permalink_path(@page.permalink)
   end
 
