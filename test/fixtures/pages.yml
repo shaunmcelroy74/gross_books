@@ -3,7 +3,7 @@
 one:
   title: "About the Data"
   content: "This data was pulled from GitHub."
-  permalink: "about-data"
+  permalink: "about"
 
 two:
   title: "Contact Us"
