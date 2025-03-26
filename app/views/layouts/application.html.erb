@@ -25,6 +25,14 @@
   </head>
 
   <body>
+    <!-- Flash Messages -->
+    <% if notice %>
+      <p class="notice" style="color: green"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert" style="color: red"><%= alert %></p>
+    <% end %>
+
     <section class="section">
       <div class="section">
         <h1 class="title is-1"><%= link_to "Top Grossing Books", root_path %></h1>
