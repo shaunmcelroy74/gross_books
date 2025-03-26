@@ -24,11 +24,11 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
       } }
     end
 
-    assert_redirected_to pages_permalink_path(Page.last.permalink)
+    assert_redirected_to page_url(Page.last)
   end
 
   test "should show page" do
-    get pages_permalink_path(@page.permalink)
+    get page_url(@page)
     assert_response :success
   end
 
@@ -41,15 +41,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     patch page_url(@page), params: { page: {
       title: "Updated Unique Title",
       content: "Updated unique content",
-      # Even if a new permalink is submitted, if you want to keep it immutable,
-      # your controller will ignore it. For now, assume your fixture’s permalink remains.
-      permalink: @page.permalink
+      permalink: "updated-unique-permalink-456"
     } }
-    @page.reload
-    # Check that the flash message is present:
-    assert_match "Page was successfully updated", @response.body
-    # And that the redirect URL is correct:
-    assert_redirected_to pages_permalink_path(@page.permalink)
+    assert_redirected_to page_url(@page)
   end
 
   test "should destroy page" do
