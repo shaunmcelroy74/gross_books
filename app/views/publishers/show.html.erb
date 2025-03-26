@@ -1,8 +1,8 @@
-<%= form_with url: publisher_path(@publisher), method: :get, local: true do |form| %>
+<div class="mb-4"><%= form_with url: publisher_path(@publisher), method: :get, local: true do |form| %>
   <%= form.label :q, "Search Books:" %>
   <%= form.text_field :q, placeholder: "Enter book title or keyword..." %>
   <%= form.submit "Search" %>
-<% end %>
+<% end %></div>
 
 <h1 class="title is-2"><%= @publisher.publisher_name %></h1>
 <p class="mb-5">
